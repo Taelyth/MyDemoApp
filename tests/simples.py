@@ -47,6 +47,16 @@ el10 = driver.find_element_by_accessibility_id("Tap to view menu")
 el10.click()
 el11 = driver.find_element_by_xpath("//androidx.recyclerview.widget.RecyclerView[@content-desc=\"Recycler view for menu\"]/android.view.ViewGroup[1]/android.widget.TextView[2]")
 el11.click()
+
+#
+el1 = driver.find_element_by_xpath("//androidx.recyclerview.widget.RecyclerView[@content-desc=\"Displays all products of catalog\"]/android.view.ViewGroup[1]/android.widget.TextView[1]")
+el1.click()
+el2 = driver.find_element_by_xpath("//androidx.recyclerview.widget.RecyclerView[@content-desc=\"Displays all products of catalog\"]/android.view.ViewGroup[1]/android.widget.TextView[2]")
+el2.click()
+el3 = driver.find_element_by_id("com.saucelabs.mydemoapp.android:id/productTV")
+el3.click()
+#
+
 el12 = driver.find_element_by_xpath("(//android.widget.ImageView[@content-desc=\"Displays selected product\"])[1]")
 el12.click()
 el13 = driver.find_element_by_id("com.saucelabs.mydemoapp.android:id/productTV")

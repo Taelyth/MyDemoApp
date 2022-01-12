@@ -3,25 +3,27 @@ import time
 from appium import webdriver
 from appium.webdriver.common.touch_action import TouchAction
 
-ambiente = 'saucelabs'
+import credentials
+
+ambiente = 'local'
 
 if ambiente == 'local':
     caps = {
         "platformName": "Android",
-        "appium:platformVersion": "10.0",
+        "appium:platformVersion": "11.0",
         "appium:automationName": "uiautomator2",
-        "browserName": "",
+        #"browserName": "",
         "appium:appiumVersion": "1.22.0",
         "appium:deviceName": "emulator5554",
         "appium:deviceOrientation": "portrait",
         "appium:appPackage": "com.saucelabs.mydemoapp.android",
-        "appium:appActivity": "com.saucelabs.mydemoapp.android.view.activities.SplashActivity",
-        "appium:ensureWebviewsHavePages": True,
-        "appium:nativeWebScreenshot": True, "appium:newCommandTimeout": 3600,
-        "appium:connectHardwareKeyboard": True
+        "appium:appActivity": "com.saucelabs.mydemoapp.android.view.activities.SplashActivity"
+        #"appium:ensureWebviewsHavePages": True,
+        #"appium:nativeWebScreenshot": True, "appium:newCommandTimeout": 3600,
+        #"appium:connectHardwareKeyboard": True
         }
 
-    driver = webdriver.Remote("http://127.0.0.1:4723/wd/hub", caps)
+    driver = webdriver.Remote("http://localhost:4723/wd/hub", caps)
 elif ambiente == 'saucelabs':
     caps = {
         "platformName": "Android",
@@ -38,9 +40,10 @@ elif ambiente == 'saucelabs':
         #"appium:newCommandTimeout": 0,
         #"appium:connectHardwareKeyboard": True
         }
-    url = 'https://Saucelabs_Jaqueline:46f3ab98-9018-4386-bfe6-9e240a00ea67@ondemand.us-west-1.saucelabs.com:443/wd/hub'
+    _credentials = credentials.SAUCE_USERNAME + ':' + credentials.SAUCE_ACCESS_KEY
+    _url = 'https://' + _credentials + '@ondemand.us-west-1.saucelabs.com:443/wd/hub'
 
-    driver = webdriver.Remote(url, caps)
+    driver = webdriver.Remote(_url, caps)
 
 
 el1 = driver.find_element_by_xpath("(//android.widget.ImageView[@content-desc=\"Displays selected product\"])[1]")
